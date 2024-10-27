@@ -2,7 +2,10 @@
 .parallax {
   position: relative;
   overflow: hidden;
-  background-color: #f7dada;
+  background-image: url(src/assets/images/abstract-pink-patterned-background_53876-99014.jpg); /* Replace with your image path */
+  background-size: cover; /* Ensure the background covers the entire area */
+  background-position: center; /* Center the background image */
+  background-attachment: fixed; /* Parallax effect */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -11,9 +14,62 @@
   text-align: center;
 }
 
+
 .parallax-content {
   animation: fadeInUp 2s ease-out;
 }
+.parallax-content h1 {
+  font-size: 3.5rem; /* Slightly larger for more emphasis */
+  font-weight: 700; /* Stronger font weight for boldness */
+  color: #252551; /* Keep the current chic color */
+  text-shadow: 3px 3px 12px rgba(184, 55, 109, 0.4); /* Enhanced shadow for more depth */
+  letter-spacing: 1.5px; /* Added spacing between letters for elegance */
+  margin-bottom: 25px;
+  
+  text-transform: uppercase; /* Gives the title a more modern look */
+}
+
+.parallax-content p {
+  font-size: 1.4rem; /* Increased font size for readability */
+  color: #0c1952;
+  margin-bottom: 50px; /* More spacing below the paragraph */
+  max-width: 800px;
+  line-height: 1.8; /* Increased line spacing for better readability */
+  font-family: 'Open Sans', sans-serif; /* Choose a clean, modern font */
+  letter-spacing: 1px;
+  padding-left: 5%;
+}
+
+.button-start, .button-login {
+  font-size: 1.4rem; /* Slightly larger for a more premium feel */
+  padding: 15px 35px; /* Larger padding for a more substantial button */
+  border: none;
+  border-radius: 50px; /* More rounded for a chic look */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smoother hover transitions */
+  margin: 0 15px;
+  color: #fff;
+  background-color: #ffb8d0; /* Keeping the same button colors */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25); /* Slightly deeper shadow for depth */
+  letter-spacing: 1px; /* Adds sophistication to button text */
+  font-family: 'Montserrat', sans-serif; /* Modern and clean font */
+}
+
+.button-start:hover, .button-login:hover {
+  transform: translateY(-7px); /* Increased hover effect for more prominence */
+  background-color: #6a9cfd; /* Color change on hover */
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
+}
+
+.button-login {
+  background-color: #ffb8d0; /* Retaining the current pink color */
+}
+
+.button-login:hover {
+  background-color: #6a9cfd; /* Switch to blue on hover */
+}
+
+
 
 /* Styles pour les boutons principaux */
 .btn-main {

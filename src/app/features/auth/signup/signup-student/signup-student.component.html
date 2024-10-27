@@ -2,28 +2,28 @@
     <div class="form-container">
         <!-- Partie Image -->
         <div class="image-section">
-            <img src="https://i.pinimg.com/474x/6f/74/d4/6f74d46aafdad671782463d90ed7e4d6.jpg" alt="Image Placeholder">
+            <img src="https://img.freepik.com/free-photo/woman-trying-understand-new-lesson_23-2148552216.jpg?ga=GA1.1.1807545956.1721340408&semt=ais_hybrid" alt="Image Placeholder">
         </div>
 
         <!-- Partie Formulaire -->
         <div class="form-section">
             <div class="form-title">Inscription Étudiant</div>
-            <form (ngSubmit)="onSubmit(registrationForm)" #registrationForm="ngForm" class="signup-form">
+            <form   class="signup-form">
                 <!-- Ligne 1: Nom et Prénom -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="lastName">
                             <i class="fa fa-user" aria-hidden="true"></i> Nom:
                         </label>
-                        <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-                        <div *ngIf="isFieldInvalid('lastName', registrationForm)" class="error-message">Nom est requis</div>
+                        <input type="text" id="lastName" name="lastName" [(ngModel)]="registerstudent.lastName" required>
+                        <!-- <div *ngIf="isFieldInvalid('lastName')" class="error-message">Nom est requis</div> -->
                     </div>
                     <div class="form-group">
                         <label for="firstName">
                             <i class="fa fa-user" aria-hidden="true"></i> Prénom:
                         </label>
-                        <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-                        <div *ngIf="isFieldInvalid('firstName', registrationForm)" class="error-message">Prénom est requis</div>
+                        <input type="text" id="firstName" name="firstName" [(ngModel)]="registerstudent.firstName" required>
+                       <!--  <div *ngIf="isFieldInvalid('firstName', registrationForm)" class="error-message">Prénom est requis</div> -->
                     </div>
                 </div>
 
@@ -33,14 +33,14 @@
                         <label for="email">
                             <i class="fa fa-envelope" aria-hidden="true"></i> Adresse Email:
                         </label>
-                        <input type="email" id="email" name="email" [(ngModel)]="email" required>
-                        <div *ngIf="isFieldInvalid('email', registrationForm)" class="error-message">Email valide est requis</div>
+                        <input type="email" id="email" name="email" [(ngModel)]="registerstudent.email" required>
+                        <!-- <div *ngIf="isFieldInvalid('email', registrationForm)" class="error-message">Email valide est requis</div> -->
                     </div>
                     <div class="form-group">
                         <label for="phone">
                             <i class="fa fa-phone" aria-hidden="true"></i> Numéro de téléphone:
                         </label>
-                        <input type="tel" id="phone" name="phone" [(ngModel)]="phone" required>
+                        <input type="tel" id="phone" name="phone" [(ngModel)]="registerstudent.phone" required>
                     </div>
                 </div>
 
@@ -50,15 +50,15 @@
                         <label for="password">
                             <i class="fa fa-lock" aria-hidden="true"></i> Mot de passe:
                         </label>
-                        <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6">
-                        <div *ngIf="isFieldInvalid('password', registrationForm)" class="error-message">Mot de passe requis (min 6 caractères)</div>
+                        <input type="password" id="password" name="password" [(ngModel)]="registerstudent.password" required minlength="6">
+                       <!--  <div *ngIf="isFieldInvalid('password', registrationForm)" class="error-message">Mot de passe requis (min 6 caractères)</div> -->
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">
                             <i class="fa fa-lock" aria-hidden="true"></i> Confirmation du mot de passe:
                         </label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required [pattern]="password">
-                        <div *ngIf="isFieldInvalid('confirmPassword', registrationForm)" class="error-message">Les mots de passe doivent correspondre</div>
+                        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required >
+                       <!--  <div *ngIf="isFieldInvalid('confirmPassword', registrationForm)" class="error-message">Les mots de passe doivent correspondre</div> -->
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                         <label for="class">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i> status:
                         </label>
-                        <select id="class" name="class" [(ngModel)]="class" required>
+                        <select id="class" name="class" [(ngModel)]="registerstudent.section" required>
                             <option value="">Sélectionner une classe</option>
                             <option value="1">collégien</option>
                             <option value="2">lycéen</option>
@@ -77,23 +77,13 @@
                             
                             <!-- Ajoutez d'autres classes selon les besoins -->
                         </select>
-                        <div *ngIf="isFieldInvalid('class', registrationForm)" class="error-message">Classe est requise</div>
+                        <!-- <div *ngIf="isFieldInvalid('class', registrationForm)" class="error-message">Classe est requise</div> -->
                     </div>
                     <div class="form-group gender-options">
                         <label>
                             <i class="fa fa-venus-mars" aria-hidden="true"></i> Genre:
                         </label>
-                        <div class="gender-options-row">
-                            <label for="male">
-                                <input type="radio" id="male" name="gender" [(ngModel)]="gender" value="male" required>
-                                <i class="fa fa-mars" aria-hidden="true"></i> Masculin
-                            </label>
-                            <label for="female">
-                                <input type="radio" id="female" name="gender" [(ngModel)]="gender" value="female">
-                                <i class="fa fa-venus" aria-hidden="true"></i> Féminin
-                            </label>
-                            <div *ngIf="isFieldInvalid('gender', registrationForm)" class="error-message">Genre est requis</div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -103,18 +93,18 @@
                         <label for="city">
                             <i class="fa fa-city" aria-hidden="true"></i> Ville:
                         </label>
-                        <input type="text" id="city" name="city" [(ngModel)]="city" required>
-                        <div *ngIf="isFieldInvalid('city', registrationForm)" class="error-message">Ville est requise</div>
+                        <input type="text" id="city" name="city" [(ngModel)]="registerstudent.address" required>
+                       <!--  <div *ngIf="isFieldInvalid('city', registrationForm)" class="error-message">Ville est requise</div> -->
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="profilePhoto">
                             <i class="fa fa-image" aria-hidden="true"></i> Choisir une photo:
-                        </label>
-                        <input type="file" id="profilePhoto" name="profilePhoto" (change)="onFileSelected($event)">
-                    </div>
+                    </label>
+                        <input type="file" id="profilePhoto" name="profilePhoto" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
+                    </div> -->
                 </div>
 
-                <button type="submit" class="validate-button" [disabled]="isLoading">
+                <button (click)="onSubmit()" class="validate-button" [disabled]="isLoading">
                     <span class="button-text">S'inscrire</span>
                     <div class="spinner" *ngIf="isLoading"></div>
                 </button>

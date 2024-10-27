@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../projectService/auth.service';
+import { EtudiantDto } from '../../../../projectModel/etudiant-dto';
+
+
 
 
 
@@ -9,42 +14,50 @@ import { NgForm } from '@angular/forms';
   styleUrl: './signup-student.component.css'
 })
 export class SignupStudentComponent {
-  lastName: string = '';
-  firstName: string = '';
-  email: string = '';
-  phone: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  class: string = '';
-  gender: string = '';
-  city: string = '';
-  profilePhoto: File | null = null;
+  registerstudent:EtudiantDto= new EtudiantDto()
   isLoading: boolean = false;
+  confirmPassword!:string;
 
-  onSubmit(form: NgForm): void {
-    if (form.invalid) {
-      // Marquer tous les contrôles comme touchés pour afficher les erreurs de validation
+  constructor(private authservice:AuthService , private router:Router) { }
+
+  onSubmit(): void {
+    console.log("wasel")
+    /* if (form.invalid) {
       Object.keys(form.controls).forEach(key => {
         form.controls[key].markAsTouched();
       });
       return;
-    }
-  
+    } */
+
     this.isLoading = true;
-  
-    // Simuler un délai de soumission du formulaire
-    setTimeout(() => {
-      this.isLoading = false;
-      alert('Form submitted successfully!');
-      form.resetForm();
-    }, 2000); // 2000 ms = 2 secondes
+
+    console.log(this.registerstudent)
+
+    this.authservice.registerStudent(this.registerstudent).subscribe({
+
+      next: (response) => {
+        this.isLoading = false;
+        alert('Student registered successfully!');
+        //const studentId = response.id; // Modifiez ceci selon la structure de votre réponse
+
+        // Stockez l'ID dans le localStorage si nécessaire
+        //localStorage.setItem('studentId', studentId.toString());
+        //form.resetForm();
+        //this.router.navigate(['profile/student/:id']);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        console.error('Error registering student:', error);
+      }
+    });
   }
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.profilePhoto = input.files[0];
-    }
-  }
+
+  //onFileSelected(event: Event): void {
+   // const input = event.target as HTMLInputElement;
+   // if (input.files && input.files.length > 0) {
+      //this.profilePhoto = input.files[0];
+    //}
+ // }
 
   isFieldInvalid(fieldName: string, form: NgForm): boolean {
     const field = form.controls[fieldName];
@@ -52,11 +65,11 @@ export class SignupStudentComponent {
   }
 
   doPasswordsMatch(): boolean {
-    return this.password === this.confirmPassword;
+    return this.registerstudent.password === this.confirmPassword;
   }
 
   isEmailValid(): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(this.email);
+    return emailPattern.test(this.registerstudent.email);
   }
 }

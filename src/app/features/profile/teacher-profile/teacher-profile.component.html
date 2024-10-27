@@ -4,10 +4,10 @@
     <h2>{{ teacher.nom }} {{ teacher.prenom }}</h2>
     <p>{{ teacher.email }}</p>
     <p>{{ teacher.bio }}</p>
-    <a [href]="teacher.cvLink" download="CV_{{ teacher.nom }}_{{ teacher.prenom }}.pdf" class="cv-button">
+   <!-- <a [href]="teacher.cvLink" download="CV_{{ teacher.nom }}_{{ teacher.prenom }}.pdf" class="cv-button">
       <i class="fa fa-download"></i> Télécharger CV
-    </a>
-    
+    </a> -->
+    <button class="btn-demande" (click)="demanderSession()">Demander une session en ligne</button>
     
     <!-- Boutons déplacés vers le bas -->
      

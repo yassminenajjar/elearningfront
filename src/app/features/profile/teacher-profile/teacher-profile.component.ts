@@ -29,7 +29,7 @@ interface Teacher {
 export class TeacherProfileComponent implements OnInit {
  
   teacher: Teacher = {
-    photo: 'https://via.placeholder.com/150',
+    photo: 'https://i.pinimg.com/564x/2e/3e/fd/2e3efdc0486a8858f9e0471eee3f68e5.jpg',
     nom: 'John',
     prenom: 'Doe',
     email: 'john.doe@example.com',
@@ -39,8 +39,8 @@ export class TeacherProfileComponent implements OnInit {
     courses: [
       {
         id: 1,
-        photo: 'https://via.placeholder.com/150',
-        title: 'Cours 1',
+        photo: 'https://i.pinimg.com/564x/23/8e/b3/238eb30e255d94fc0d2c5031d4e999f2.jpg',
+        title: 'Cours python',
         description: 'Description du cours 1...',
         price: 50
       },
@@ -94,5 +94,10 @@ export class TeacherProfileComponent implements OnInit {
   navigateTouppdatecours() {
     this.router.navigate(['/updatecours']);
   }
+  demanderSession() {
+    // Navigation vers la page de demande de session
+    this.router.navigate(['/session']); // Assurez-vous que ce chemin est correct
+  }
+
 
 }

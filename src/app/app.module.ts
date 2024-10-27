@@ -9,12 +9,19 @@ import { AuthModule } from './features/auth/auth.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { CoursesModule } from './features/courses/courses.module';
 import { AdminModule } from './features/admin/admin.module';
+import { SessionenligneModule } from './features/sessionenligne/sessionenligne.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { PanierModule } from './features/panier/panier.module';
+import { provideHttpClient } from '@angular/common/http';
+import { AboutusComponent } from './features/aboutus/aboutus.component';
+
+
+
+
 
 
 
@@ -23,6 +30,8 @@ import { PanierModule } from './features/panier/panier.module';
 @NgModule({
   declarations: [
     AppComponent,
+    AboutusComponent,
+  
     
     
     
@@ -41,14 +50,20 @@ import { PanierModule } from './features/panier/panier.module';
     FormsModule,
     
     ReactiveFormsModule,
-    PanierModule
+    PanierModule,
+    
+    
+    
+
+
+
 
 ],
   
 
 
 providers: [
-    provideClientHydration()
+  provideHttpClient() 
   ],
   bootstrap: [AppComponent]
 })

@@ -1,19 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Teacher } from '../../models/teacher';
 
 
 
-interface Teacher {
-  photo: string;
-  nom: string;
-  prenom: string;
-  email: string;
-  bio: string;
-  cvLink: string;
-  accepteSessions: boolean;
-  courses: Course[];
-}
 
 interface Course {
   id: number;
@@ -33,28 +24,35 @@ export class TeacherService {
   private baseUrl = 'http://localhost:8080/api/teachers';
 
   constructor(private http: HttpClient) { }
-
-  registerTeacher(teacher: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, teacher);
+  registerTeacher(formData: FormData): Observable<{ id: number }> {
+    // Send the FormData to the backend using an HTTP POST request
+    return this.http.post<{ id: number }>(`${this.baseUrl}/register`, formData); // Use formData here
+  }
+  
+  
+  // Connexion d'un enseignant
+  loginTeacher(email: string, password: string): Observable<Teacher> {
+    const body = { email, password };
+    return this.http.post<Teacher>(`${this.baseUrl}/login`, body);
   }
 
-  loginTeacher(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, { email, password });
+  // Récupérer tous les enseignants
+  getAllTeachers(): Observable<Teacher[]> {
+    return this.http.get<Teacher[]>(`${this.baseUrl}`);
   }
 
-  getAllTeachers(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+  // Récupérer un enseignant par son ID
+  getTeacherById(id: number): Observable<Teacher> {
+    return this.http.get<Teacher>(`${this.baseUrl}/${id}`);
   }
 
-  getTeacherById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  // Mettre à jour un enseignant
+  updateTeacher(id: number, teacher: Teacher): Observable<Teacher> {
+    return this.http.put<Teacher>(`${this.baseUrl}/update/${id}`, teacher);
   }
 
-  updateTeacher(id: number, teacher: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, teacher);
-  }
-
-  deleteTeacher(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+  // Supprimer un enseignant
+  deleteTeacher(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 }

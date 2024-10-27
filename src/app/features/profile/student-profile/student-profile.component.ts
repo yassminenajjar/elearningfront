@@ -1,36 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router , ActivatedRoute} from '@angular/router';
+import { StudentService } from '../../../core/services/student.service';
+
+import { Student } from '../../../models/student';
+
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.component.html',
   styleUrl: './student-profile.component.css'
 })
 export class StudentProfileComponent implements OnInit {
-  studentData: any;
+  studentData: Student | null = null; // Initialisez à null
   courses: any[] = [];
   editMode = false;
   selectedFile: File | null = null;
+  studentId: number | null = null; 
 
-  // Données simulées pour l'exemple
-  mockStudentData = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    profilePicture: 'https://via.placeholder.com/150'
-  };
-
-  mockCourses = [
-    { id: 1, title: 'Introduction to Angular', date: '2024-05-01' },
-    { id: 2, title: 'Advanced JavaScript', date: '2024-06-15' }
-  ];
-
-  constructor(private router: Router) { }
+  
+  constructor(private router: Router , private studentService: StudentService , private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Simuler le chargement des données du profil étudiant
-    this.studentData = this.mockStudentData;
-    this.courses = this.mockCourses;
-   
+    // Charger les données de l'étudiant à partir de l'API
+    this.studentId = this.getCurrentStudentId();
+    this.loadStudentData();
+    this.loadCourses();
+
+    
+    
+  }
+
+  private loadStudentData(): void {
+    const studentId = this.getCurrentStudentId(); // Récupérez l'ID de l'étudiant
+    this.studentService.getStudentById(studentId).subscribe({
+      next: (data) => {
+        this.studentData = data;
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des données de l\'étudiant', error);
+      },
+      complete: () => {
+        console.log('Chargement des données terminé');
+      }
+    });
+  }
+  
+  private loadCourses(): void {
+    // Remplacez cette méthode par l'appel réel à votre API pour charger les cours
+    this.courses = [
+      { id: 1, title: 'Introduction to Angular', date: '2024-05-01' },
+      { id: 2, title: 'Advanced JavaScript', date: '2024-06-15' }
+    ];
   }
 
 
@@ -43,11 +62,14 @@ export class StudentProfileComponent implements OnInit {
       // Créer un URL pour afficher l'aperçu de l'image
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.studentData.profilePicture = e.target.result;
+        if (this.studentData) {
+          this.studentData.profilePhoto = e.target.result;
+        }
       };
       reader.readAsDataURL(file);
     }
   }
+
 
  
 
@@ -67,5 +89,17 @@ export class StudentProfileComponent implements OnInit {
   navigateTouppdate() {
     this.router.navigate(['/uppdatestudent']);
   }
+
+  private getCurrentStudentId(): number {
+    const id = localStorage.getItem('studentId');
+    if (!id) {
+      console.warn('Aucun ID d\'étudiant trouvé, redirection vers la page de connexion');
+      this.router.navigate(['/login']); // Rediriger vers la page de connexion
+      return 1; // Vous pouvez choisir de renvoyer 1 ou gérer autrement
+    }
+    return +id;
+  }
+  
+  
 
 }

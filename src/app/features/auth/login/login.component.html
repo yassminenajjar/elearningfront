@@ -3,7 +3,9 @@
     
     <!-- Image Section -->
     <div class="login-left">
-      <img src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Rocket">
+      
+      <img src="assets/login.jpg" alt="Rocket">
+
     </div>
     
     <!-- Login Form Section -->
@@ -20,37 +22,43 @@
       <h2 class="form-heading">Login</h2>
       
       <!-- Login Form -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+      <form  >
+        
+        <div class="form-group" >
+          <label for="email">Email</label>
           <input 
+            id="email" 
             type="email" 
-            formControlName="email" 
+            [(ngModel)]="authrequest.email" 
+            name="email"
             placeholder="Email" 
-            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
-          <div *ngIf="submitted && f['email'].errors" class="error-message">
+            >
+          <!-- <div *ngIf="submitted && f['email'].errors" class="error-message">
             <div *ngIf="f['email'].errors['required']">Email is required</div>
             <div *ngIf="f['email'].errors['email']">Email is invalid</div>
-          </div>
+          </div> -->
         </div>
         
         <div class="form-group">
+          <label for="password">Password</label>
           <input 
+            id="password" 
             type="password" 
-            formControlName="password" 
+            [(ngModel)]="authrequest.password" 
+            name="password"
             placeholder="Password" 
-            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
-          <div *ngIf="submitted && f['password'].errors" class="error-message">
+            >
+          <!-- <div *ngIf="submitted && f['password'].errors" class="error-message">
             <div *ngIf="f['password'].errors['required']">Password is required</div>
             <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
-          </div>
+          </div> -->
         </div>
         
         <div class="login-options">
-          
           <a href="#" class="forgot-password">Forgot Password?</a>
         </div>
         
-        <button type="submit" class="login-button" [disabled]="loading">
+        <button (click)="onSubmit()" class="login-button" [disabled]="loading">
           <ng-container *ngIf="loading">
             <div class="spinner"></div>
           </ng-container>
@@ -79,9 +87,3 @@
     
   </div>
 </div>
-
-
-
-
-
-  

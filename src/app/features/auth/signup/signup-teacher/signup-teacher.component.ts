@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { Teacher } from '../../../../models/teacher';
+import { TeacherService } from '../../../../core/services/teacher.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ProfDto } from '../../../../projectModel/prof-dto';
+import { AuthService } from '../../../../projectService/auth.service';
 
 @Component({
   selector: 'app-signup-teacher',
@@ -7,22 +14,16 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signup-teacher.component.css']
 })
 export class SignupTeacherComponent {
-  // Champs du formulaire
-  lastName: string = '';
-  firstName: string = '';
-  email: string = '';
-  phone: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  subjects: string = '';
-  categories: string = '';
-  city: string = '';
-  bio: string = '';
+  
+  registerprof:ProfDto = new ProfDto()
+  confirmPassword!:string;
+ 
   receiveRequests: string = 'no';
-  profilePhoto: File | null = null;
-  isLoading = false;
+  isLoading: boolean = false;
 
-  // Disponibilité
+  constructor(private authservice:AuthService , private router:Router) { }
+
+ /*  // Disponibilité
   showAvailability: { [key: string]: boolean } = {
     'Lundi': false,
     'Mardi': false,
@@ -41,49 +42,98 @@ export class SignupTeacherComponent {
     { name: 'Vendredi', times: ['matin', 'midi', 'après-midi', 'soir'], selectedTimes: [] },
     { name: 'Samedi', times: ['matin', 'midi', 'après-midi', 'soir'], selectedTimes: [] },
     { name: 'Dimanche', times: ['matin', 'midi', 'après-midi', 'soir'], selectedTimes: [] },
-  ];
+  ]; */
 
-  onSubmit(form: NgForm): void {
-    if (form.invalid) {
-      // Marquer tous les contrôles comme touchés pour afficher les erreurs de validation
+  onSubmit(): void {
+    /* if (form.invalid) {
       Object.keys(form.controls).forEach(key => {
         form.controls[key].markAsTouched();
       });
       return;
-    }
+    } */
+  
+   /*  if (!this.profilePhoto) {
+      alert('Please select a profile photo.');
+      return;
+    } */
   
     this.isLoading = true;
   
-    // Simuler un délai de soumission du formulaire
-    setTimeout(() => {
-      this.isLoading = false;
-      alert('Form submitted successfully!');
-      form.resetForm();
-    }, 2000); // 2000 ms = 2 secondes
+    // Create a new FormData object to send the form data
+    
+    // Send the FormData via the service
+    this.authservice.registerProf(this.registerprof).subscribe({
+      next: (response) => {
+        this.isLoading = false;
+        alert('Teacher registered successfully!');
+       /*  const teacherId = response.id;
+        localStorage.setItem('teacherID', teacherId.toString());
+        form.resetForm();
+        this.router.navigate(['profile/teacher/', teacherId]); */
+      },
+      error: (error: HttpErrorResponse) => {
+        this.isLoading = false;
+        console.error('Error status:', error.status);
+        console.error('Error details:', error.error);
+        alert(`Error ${error.status}: ${error.error.message}`);
+      }
+      
+      
+    });
   }
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+    
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+  
+      // Optionnel : Vous pouvez ajouter une validation pour le type de fichier, par exemple pour accepter uniquement les images
+      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!validImageTypes.includes(file.type)) {
+        console.error('Type de fichier non valide. Veuillez télécharger une image.');
+        return;
+      }
+  
+      /* this.profilePhoto = file;
+      console.log('Fichier sélectionné :', file.name); // Pour déboguer */
+    }
+  }
+  
+
+  // Utility functions
   isFieldInvalid(fieldName: string, form: NgForm): boolean {
     const field = form.controls[fieldName];
-    return field && field.invalid && (field.dirty || field.touched);
+    return field.invalid && (field.dirty || field.touched);
   }
 
   isEmailValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(this.email);
+    return emailRegex.test(this.registerprof.email);
   }
 
   doPasswordsMatch(): boolean {
-    return this.password === this.confirmPassword;
+    return this.registerprof.password === this.confirmPassword;
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.profilePhoto = input.files[0];
-    }
-  }
+ 
 
-  toggleAvailability(value: string) {
+ /*  toggleAvailability(value: string) {
     if (value === 'yes') {
       this.showAvailability = { ...this.showAvailability, ...Object.fromEntries(Object.keys(this.showAvailability).map(day => [day, true])) };
     } else {
@@ -105,5 +155,5 @@ export class SignupTeacherComponent {
         day.selectedTimes.splice(index, 1);
       }
     }
-  }
+  } */
 }

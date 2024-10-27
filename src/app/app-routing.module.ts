@@ -19,6 +19,8 @@ import { RequestsessionComponent } from './features/profile/requestsession/reque
 import { UpdatestudentComponent } from './features/profile/updatestudent/updatestudent.component';
 import { UpdateteacherComponent } from './features/profile/updateteacher/updateteacher.component';
 import { UpdatecoursComponent } from './features/courses/updatecours/updatecours.component';
+import { AboutusComponent } from './features/aboutus/aboutus.component';
+import { SessionformComponent } from './features/sessionenligne/sessionform/sessionform.component';
 
 
 
@@ -32,8 +34,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup/student', component: SignupStudentComponent },
   { path: 'signup/teacher', component: SignupTeacherComponent },
-  { path: 'profile/student', component: StudentProfileComponent },
-  { path: 'profile/teacher', component: TeacherProfileComponent },
+  { path: 'profile/student/:id', component: StudentProfileComponent },
+  { path: 'profile/teacher/:id', component: TeacherProfileComponent },
   { path: 'courses', component: CourseListComponent },
   { path: 'courses/:id', component: CourseDetailComponent },
   {path: 'panier' , component:PaniercoursComponent},
@@ -46,7 +48,8 @@ const routes: Routes = [
   {path:'uppdateteacher',component:UpdateteacherComponent},  
   {path:'newcour',component:NewcourseComponent},
   {path:'updatecours', component:UpdatecoursComponent},
-
+{path:'aboutus' , component:AboutusComponent},
+{path:'session' , component:SessionformComponent},
   { path: '**', redirectTo: '' } // Redirection pour les routes non définies
   
   

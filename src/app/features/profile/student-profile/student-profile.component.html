@@ -2,12 +2,13 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="profile-info" *ngIf="!editMode">
-      <img [src]="studentData.profilePicture" alt="Profile Picture" class="profile-picture"/>
-      <h2>{{ studentData.name }}</h2>
-      <p>Email: {{ studentData.email }}</p>
-      <p>Phone: {{ studentData.phone }}</p>
-      <p>Gender: {{ studentData.gender }}</p>
-      <p>City: {{ studentData.city }}</p>
+      <img [src]="studentData?.profilePhoto" alt="Profile Picture" class="profile-picture"/>
+      <h2>{{ studentData?.lastName }}</h2>
+      <h2>{{ studentData?.firstName }}</h2>
+      <p>Email: {{ studentData?.email }}</p>
+      <p>Phone: {{ studentData?.phone }}</p>
+      <p>Gender: {{ studentData?.gender }}</p>
+      <p>City: {{ studentData?.city }}</p>
       <button (click)="navigateTouppdate()" class="btn-edit">Edit Profile</button>
       <button (click)="logout()" class="btn-logout">Logout</button> <!-- Added Logout Button -->
     </div>

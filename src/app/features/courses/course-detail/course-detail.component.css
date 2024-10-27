@@ -1,6 +1,5 @@
 .course-component-container {
-  background: url('https://i.pinimg.com/564x/92/ab/ab/92abab5d052bfe63c239eae90270e1d0.jpg') no-repeat center center;
-  background-size: cover; /* Assure que l'image couvre tout le conteneur */
+ background-color: #efdfe4; /* Assure que l'image couvre tout le conteneur */
   min-height: 100vh; /* Assure que le conteneur occupe toute la hauteur de la vue */
   padding: 20px; /* Ajouter du padding autour du contenu */
   box-sizing: border-box; /* Assure que le padding est inclus dans la largeur et la hauteur */
@@ -12,8 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: url('https://i.pinimg.com/564x/92/ab/ab/92abab5d052bfe63c239eae90270e1d0.jpg') no-repeat center center;
-  background-size: cover; /* Assure que l'image couvre tout le conteneur */
+ background-color: rgb(255, 255, 255); /* Assure que l'image couvre tout le conteneur */
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
@@ -30,7 +28,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(210, 17, 17, 0.179); /* Couleur semi-transparente pour le fond */
+  background: rgba(48, 44, 99, 0.179); /* Couleur semi-transparente pour le fond */
   backdrop-filter: blur(10px); /* Effet de flou pour le fond */
   z-index: -1; /* Assure que cet élément est en dessous du contenu */
   border-radius: 12px; /* Assure que le flou est également arrondi */

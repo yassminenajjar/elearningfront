@@ -1,12 +1,12 @@
 .teacher-profile {
   display: flex;
   height: 100vh;
-  background-color: #c8d3e8;
+  background-color: #ffffff;
 }
 
 .sidebar {
   width: 300px;
-  background-color: #f8f8f8;
+  background-color: #1a314a;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   display: flex;
@@ -14,6 +14,30 @@
   justify-content: space-between; /* Adjust for bottom buttons */
   align-items: center;
   height: 100vh;
+}
+/* Styles pour le conteneur du professeur */
+.prof-container {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de demande de session */
+.btn-demande {
+  background-color: #6a9cfd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Espace au-dessus du bouton */
+}
+
+.btn-demande:hover {
+  background-color: #5a88e0; /* Couleur plus foncée au survol */
 }
 
 .profile-photo {
@@ -27,6 +51,7 @@
 .sidebar h2, .sidebar p {
   margin: 10px 0;
   text-align: center;
+  color: #edf0f3;
 }
 
 .cv-button {
@@ -36,8 +61,8 @@
   width: 60%;
   padding: 10px;
   text-align: center;
-  background-color: #6a9cfd;
-  color: white;
+  background-color: #d0a2b1;
+  color: rgb(253, 252, 252);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -184,7 +209,7 @@
 .edit-course-button,
 .delete-course-button {
   border: none;
-  background: #6a9cfd;
+  background: #d0a2b1;
   color: #fff;
   padding: 6px 12px;
   border-radius: 4px;
@@ -202,12 +227,12 @@
 
 .edit-course-button:hover,
 .delete-course-button:hover {
-  background: #5a8bdf;
+  background: #df5aaa;
 }
 
 /* Style pour le bouton d'ajout de cours */
 .add-course-button {
-  background: #6a9cfd;
+  background: #1a314a;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -274,7 +299,7 @@
 
 /* Style pour les boutons à l'intérieur de la carte */
 .card-body button {
-  background-color: #3498db; /* Couleur de fond des boutons */
+  background-color: #be5b7c; /* Couleur de fond des boutons */
   border: none;
   color: white;
   padding: 10px;

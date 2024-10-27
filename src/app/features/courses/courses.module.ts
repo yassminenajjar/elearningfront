@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NewcourseComponent } from './newcourse/newcourse.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatecoursComponent } from './updatecours/updatecours.component'; 
+import { CourseService } from '../../core/services/course.service';
 
 
 

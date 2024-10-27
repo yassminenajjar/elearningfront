@@ -3,24 +3,24 @@
         <div class="form-container">
             <!-- Photo de profil -->
             <div class="image-placeholder">
-                <img src="https://i.pinimg.com/474x/6f/74/d4/6f74d46aafdad671782463d90ed7e4d6.jpg" alt="Image Placeholder">
+                <img src="https://img.freepik.com/free-photo/woman-holding-light-bulb-icons_53876-24889.jpg?t=st=1726783313~exp=1726786913~hmac=61943f18b9253d529123d7020c4781cb1d45b2d222f04d160ea82195ae42cc2c&w=740" alt="Image Placeholder">
             </div>
 
             <!-- Formulaire d'inscription -->
-            <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="signup-form">
+            <form  class="signup-form">
                 <div class="form-title">Inscription Professeur</div>
                 
                 <!-- Ligne 1: Nom et Prénom -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="lastName"><i class="fas fa-user"></i> Nom:</label>
-                        <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" #lastNameModel="ngModel" required>
-                        <div *ngIf="isFieldInvalid('lastName', form)" class="error-message">Nom requis</div>
+                        <input type="text" id="lastName" name="lastName" [(ngModel)]="registerprof.lastName" #lastNameModel="ngModel" required>
+                        <!-- <div *ngIf="isFieldInvalid('lastName', form)" class="error-message">Nom requis</div> -->
                     </div>
                     <div class="form-group">
                         <label for="firstName"><i class="fas fa-user"></i> Prénom:</label>
-                        <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" #firstNameModel="ngModel" required>
-                        <div *ngIf="isFieldInvalid('firstName', form)" class="error-message">Prénom requis</div>
+                        <input type="text" id="firstName" name="firstName" [(ngModel)]="registerprof.firstName" #firstNameModel="ngModel" required>
+                        <!-- <div *ngIf="isFieldInvalid('firstName', form)" class="error-message">Prénom requis</div> -->
                     </div>
                 </div>
 
@@ -28,13 +28,13 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email"><i class="fas fa-envelope"></i> Adresse Email:</label>
-                        <input type="email" id="email" name="email" [(ngModel)]="email" #emailModel="ngModel" required>
-                        <div *ngIf="isFieldInvalid('email', form) || !isEmailValid()" class="error-message">Email valide requis</div>
+                        <input type="email" id="email" name="email" [(ngModel)]="registerprof.email" #emailModel="ngModel" required>
+                        <!-- <div *ngIf="isFieldInvalid('email', form) || !isEmailValid()" class="error-message">Email valide requis</div> -->
                     </div>
                     <div class="form-group">
                         <label for="phone"><i class="fas fa-phone"></i> Numéro de téléphone:</label>
-                        <input type="tel" id="phone" name="phone" [(ngModel)]="phone" #phoneModel="ngModel" required>
-                        <div *ngIf="isFieldInvalid('phone', form)" class="error-message">Numéro de téléphone requis</div>
+                        <input type="tel" id="phone" name="phone" [(ngModel)]="registerprof.phone" #phoneModel="ngModel" required>
+                        <!-- <div *ngIf="isFieldInvalid('phone', form)" class="error-message">Numéro de téléphone requis</div> -->
                     </div>
                 </div>
 
@@ -42,18 +42,18 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="password"><i class="fas fa-lock"></i> Mot de passe:</label>
-                        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordModel="ngModel" required minlength="6">
-                        <div *ngIf="isFieldInvalid('password', form)" class="error-message">Mot de passe requis (min 6 caractères)</div>
+                        <input type="password" id="password" name="password" [(ngModel)]="registerprof.password" #passwordModel="ngModel" required minlength="6">
+                        <!-- <div *ngIf="isFieldInvalid('password', form)" class="error-message">Mot de passe requis (min 6 caractères)</div> -->
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword"><i class="fas fa-lock"></i> Confirmation du mot de passe:</label>
                         <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" #confirmPasswordModel="ngModel" required>
-                        <div *ngIf="!doPasswordsMatch()" class="error-message">Les mots de passe ne correspondent pas</div>
+                        <!-- <div *ngIf="!doPasswordsMatch()" class="error-message">Les mots de passe ne correspondent pas</div> -->
                     </div>
                 </div>
 
                 <!-- Ligne 4: Matières et Expérience -->
-                <div class="form-row">
+               <!--  <div class="form-row">
                     <div class="form-group">
                         <label for="subjects"><i class="fas fa-book"></i> Matières:</label>
                         <input type="text" id="subjects" name="subjects" [(ngModel)]="subjects" #subjectsModel="ngModel" required>
@@ -65,33 +65,33 @@
                         <div *ngIf="isFieldInvalid('categories', form)" class="error-message">categories requises</div>
                     </div>
                     
-                </div>
+                </div> -->
 
                 <!-- Ligne 5: Ville et Biographie -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="city"><i class="fas fa-city"></i> Ville:</label>
-                        <input type="text" id="city" name="city" [(ngModel)]="city" #cityModel="ngModel" required>
-                        <div *ngIf="isFieldInvalid('city', form)" class="error-message">Ville requise</div>
+                        <input type="text" id="city" name="city" [(ngModel)]="registerprof.address" #cityModel="ngModel" required>
+                        <!-- <div *ngIf="isFieldInvalid('city', form)" class="error-message">Ville requise</div> -->
                     </div>
                     <div class="form-group">
                         <label for="bio"><i class="fas fa-pencil-alt"></i> Biographie:</label>
-                        <textarea id="bio" name="bio" [(ngModel)]="bio" #bioModel="ngModel" rows="4" required></textarea>
-                        <div *ngIf="isFieldInvalid('bio', form)" class="error-message">Biographie requise</div>
+                        <textarea id="bio" name="bio" [(ngModel)]="registerprof.biographie" #bioModel="ngModel" rows="4" required></textarea>
+                       <!--  <div *ngIf="isFieldInvalid('bio', form)" class="error-message">Biographie requise</div> -->
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="profilePhoto"><i class="fas fa-camera"></i> Photo de profil:</label>
-                        <input type="file" id="profilePhoto" (change)="onFileSelected($event)" accept="image/*">
+                        <input type="file" id="profilePhoto" (change)="onFileSelected($event)" >
                     </div>
                 </div>
                 
 
                 <!-- Ligne 6: Réception des demandes -->
-                <div class="form-row">
+               <!--  <div class="form-row">
                     <div class="form-group">
-                        <label>Recevoir des demandes de cours:</label>
+                        <label>Recevoir des demandes de session en ligne:</label>
                         <label>
                             <input type="radio" name="receiveRequests" [(ngModel)]="receiveRequests" value="yes"> Oui
                         </label>
@@ -99,11 +99,11 @@
                             <input type="radio" name="receiveRequests" [(ngModel)]="receiveRequests" value="no"> Non
                         </label>
                     </div>
-                </div>
+                </div> -->
              
 
                 <!-- Ligne 7: Disponibilité (affiché uniquement si 'receiveRequests' est 'yes') -->
-                <div class="form-row" *ngIf="receiveRequests === 'yes'">
+               <!--  <div class="form-row" *ngIf="receiveRequests === 'yes'">
                     <div class="form-group">
                         <label>Disponibilité:</label>
                         <div *ngFor="let day of days">
@@ -119,14 +119,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Ligne 8: Photo de profil -->
                
-
+               
                 <!-- Ligne 9: Bouton de soumission -->
                 <!-- Bouton de soumission -->
-                <button type="submit" class="validate-button" [disabled]="isLoading">
+                <button (click)="onSubmit()" class="validate-button" [disabled]="isLoading">
                     <span class="button-text">S'inscrire</span>
                     <div class="spinner" *ngIf="isLoading"></div>
                 </button>

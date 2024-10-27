@@ -1,26 +1,35 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+import { AuthenticationRequest } from '../../../projectModel/authentication-request';
+import { AuthService } from '../../../projectService/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+ 
   loading = false;
   submitted = false;
   error: string | null = null;
-  rememberMe = false;
+  authrequest:AuthenticationRequest = new AuthenticationRequest()
 
-  constructor(private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
+
+  constructor(
+    
+    private authservice:AuthService ,// Injection d'AuthService
+    private router: Router // Injection du service de routage
+  ) {
+   /*  this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    }); */
   }
 
-  get f() { return this.loginForm.controls; }
+ /*  get f() { return this.loginForm.controls; }
 
   get emailErrors() {
     const control = this.f['email'];
@@ -33,9 +42,9 @@ export class LoginComponent {
       }
     }
     return null;
-  }
+  } */
 
-  get passwordErrors() {
+ /*  get passwordErrors() {
     const control = this.f['password'];
     if (control.errors) {
       if (control.errors['required']) {
@@ -46,30 +55,40 @@ export class LoginComponent {
       }
     }
     return null;
-  }
+  } */
+    onSubmit(): void {
+      console.log("wasel")
+      /* if (form.invalid) {
+        Object.keys(form.controls).forEach(key => {
+          form.controls[key].markAsTouched();
+        });
+        return;
+      } */
+  
+  
+      console.log(this.authrequest)
+  
+      this.authservice.login(this.authrequest).subscribe({
+  
+        next: (response) => {
+          
+          alert("authentificated successfully!");
+          this.authservice.setUserToken(response)
+          
+          const id=localStorage.getItem("userId");
+          console.log(Number(id))
 
-  onSubmit() {
-    this.submitted = true;
-    this.error = null;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
+  
+          //Stockez l'ID dans le localStorage si nécessaire
+          
+        
+          this.router.navigate(['profile/student/:id']);
+        },
+        error: (error) => {
+          
+          console.error('Error registering student:', error);
+        }
+      });
     }
-
-    this.loading = true;
-    setTimeout(() => {
-      // Simulate a login request
-      this.loading = false;
-      if (this.f['email'].value !== 'test@example.com' || this.f['password'].value !== 'password') {
-        this.error = 'Email ou mot de passe invalide';
-      } else {
-        alert('Connexion réussie!');
-        // Optionally, redirect or navigate to another page
-      }
-    }, 2000);
-  }
+  
 }
-
-
-

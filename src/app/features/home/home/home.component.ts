@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements AfterViewInit {
   categories = [
-    { name: 'Sciences', icon: 'https://cdn-icons-mp4.flaticon.com/512/11651/11651674.mp4', color: '#e0f7fa' },
+    { name: 'Sciences', icon: 'https://cdn-icons-mp4.flaticon.com/512/11651/11651674.mp4', color: '#f4e1eb' },
     { name: 'Technologies', icon: 'https://cdn-icons-mp4.flaticon.com/512/11184/11184180.mp4', color: '#fbe9e7' },
     { name: 'Mathématiques', icon: 'https://cdn-icons-mp4.flaticon.com/512/11545/11545372.mp4', color: '#f1f8e9' }
     // Ajoutez d'autres catégories ici
