@@ -1,6 +1,7 @@
 
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'ngx-toastr/toastr';
 
 .navbar {
   background-color: #123456 !important; /* Utilisez !important pour garantir la priorité */

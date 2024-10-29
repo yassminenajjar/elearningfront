@@ -18,6 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PanierModule } from './features/panier/panier.module';
 import { provideHttpClient } from '@angular/common/http';
 import { AboutusComponent } from './features/aboutus/aboutus.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { GestionmatiereComponent } from './pageprofesseur/gestionmatiere/gestionmatiere.component';
 
 
 
@@ -31,6 +34,7 @@ import { AboutusComponent } from './features/aboutus/aboutus.component';
   declarations: [
     AppComponent,
     AboutusComponent,
+    GestionmatiereComponent,
   
     
     
@@ -51,6 +55,17 @@ import { AboutusComponent } from './features/aboutus/aboutus.component';
     
     ReactiveFormsModule,
     PanierModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
+
+
+
+
+
+
+
+
+
     
     
     

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../projectService/auth.service';
 import { EtudiantDto } from '../../../../projectModel/etudiant-dto';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -18,7 +19,18 @@ export class SignupStudentComponent {
   isLoading: boolean = false;
   confirmPassword!:string;
 
-  constructor(private authservice:AuthService , private router:Router) { }
+  constructor(private authservice:AuthService , private router:Router , private toastr: ToastrService
+
+
+
+
+
+
+
+
+
+
+  ) { }
 
   onSubmit(): void {
     console.log("wasel")
@@ -37,7 +49,20 @@ export class SignupStudentComponent {
 
       next: (response) => {
         this.isLoading = false;
-        alert('Student registered successfully!');
+        this.toastr.success("student succesfully registred 😎")
+
+
+
+
+
+
+
+
+
+
+
+
+
         //const studentId = response.id; // Modifiez ceci selon la structure de votre réponse
 
         // Stockez l'ID dans le localStorage si nécessaire
@@ -47,7 +72,24 @@ export class SignupStudentComponent {
       },
       error: (error) => {
         this.isLoading = false;
-        console.error('Error registering student:', error);
+        this.toastr.error(" orry student filed register !!!!! 😥")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       }
     });
   }

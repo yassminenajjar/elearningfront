@@ -21,6 +21,7 @@ import { UpdateteacherComponent } from './features/profile/updateteacher/updatet
 import { UpdatecoursComponent } from './features/courses/updatecours/updatecours.component';
 import { AboutusComponent } from './features/aboutus/aboutus.component';
 import { SessionformComponent } from './features/sessionenligne/sessionform/sessionform.component';
+import { GestionmatiereComponent } from './pageprofesseur/gestionmatiere/gestionmatiere.component';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path:'updatecours', component:UpdatecoursComponent},
 {path:'aboutus' , component:AboutusComponent},
 {path:'session' , component:SessionformComponent},
+{path:'matiere' , component:GestionmatiereComponent},
   { path: '**', redirectTo: '' } // Redirection pour les routes non définies
   
   

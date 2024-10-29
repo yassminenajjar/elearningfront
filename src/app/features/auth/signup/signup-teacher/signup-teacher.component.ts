@@ -7,6 +7,7 @@ import { TeacherService } from '../../../../core/services/teacher.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProfDto } from '../../../../projectModel/prof-dto';
 import { AuthService } from '../../../../projectService/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup-teacher',
@@ -21,7 +22,7 @@ export class SignupTeacherComponent {
   receiveRequests: string = 'no';
   isLoading: boolean = false;
 
-  constructor(private authservice:AuthService , private router:Router) { }
+  constructor(private authservice:AuthService , private router:Router , private toastr: ToastrService) { }
 
  /*  // Disponibilité
   showAvailability: { [key: string]: boolean } = {
@@ -45,37 +46,20 @@ export class SignupTeacherComponent {
   ]; */
 
   onSubmit(): void {
-    /* if (form.invalid) {
-      Object.keys(form.controls).forEach(key => {
-        form.controls[key].markAsTouched();
-      });
-      return;
-    } */
   
-   /*  if (!this.profilePhoto) {
-      alert('Please select a profile photo.');
-      return;
-    } */
   
     this.isLoading = true;
-  
-    // Create a new FormData object to send the form data
-    
-    // Send the FormData via the service
-    this.authservice.registerProf(this.registerprof).subscribe({
+  this.authservice.registerProf(this.registerprof).subscribe({
       next: (response) => {
         this.isLoading = false;
-        alert('Teacher registered successfully!');
-       /*  const teacherId = response.id;
-        localStorage.setItem('teacherID', teacherId.toString());
-        form.resetForm();
-        this.router.navigate(['profile/teacher/', teacherId]); */
+        this.toastr.success("Teacher succesfully registred 😎")
+      
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
-        console.error('Error status:', error.status);
-        console.error('Error details:', error.error);
-        alert(`Error ${error.status}: ${error.error.message}`);
+        
+        this.toastr.error(" Sorry student filed register !!!!! 😥")
+        
       }
       
       
